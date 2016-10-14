@@ -1,0 +1,22 @@
+# Devtools
+- name: install 'Development tools' package group
+  yum: name="@Development tools" state=present
+- name: Install package dependencies
+  yum: 
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - git-core
+    - zip
+    - curl
+    - readline-devel
+    - python
+    - libselinux-python
+    - libyaml
+    - openssl-devel
+    - libtool
+    - sqlite-devel
+    - libxml2-devel
+    - libxslt-devel
+    - ImageMagick
+    - redis

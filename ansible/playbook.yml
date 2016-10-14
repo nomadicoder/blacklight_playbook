@@ -1,0 +1,22 @@
+---
+- hosts: all
+  remote_user: vagrant
+  sudo: yes
+  vars:
+    nodejs_version: v0.10.4
+    ruby_version: 2.3.1
+    rails_version: 4.2.7.1
+    java_version: 1.8.0
+    blacklight_version: 7.1.0
+    domainname: localhost
+    app_user: vagrant
+    app_path: /vagrant
+  tasks:
+    - include: tasks/devtools.yml
+    - include: tasks/java.yml
+    - include: tasks/nodejs.yml
+    - include: tasks/app_user.yml
+    - include: tasks/ruby.yml
+      become : "{{ app_user }}"
+#    - include: tasks/blacklight.yml
+#      become : "{{ app_user }}"
