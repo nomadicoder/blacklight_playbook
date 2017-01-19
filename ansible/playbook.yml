@@ -1,8 +1,9 @@
 ---
 - hosts: all
   remote_user: vagrant
-  sudo: yes
+  become: yes
   vars:
+    package_manager: yum
     nodejs_version: v0.10.4
     ruby_version: 2.3.1
     rails_version: 5.0.0.1
@@ -15,8 +16,8 @@
   tasks:
     - include: tasks/devtools.yml
     - include: tasks/java.yml
+    - include: tasks/maven.yml
     - include: tasks/nodejs.yml
-    - include: tasks/app_user.yml
     - include: tasks/ruby.yml
       become : "{{ app_user }}"
 #    - include: tasks/blacklight.yml

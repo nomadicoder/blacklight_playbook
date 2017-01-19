@@ -1,10 +1,14 @@
 # Devtools
 - name: install 'Development tools' package group
-  yum: name="@Development tools" state=present
+  package:
+    name: "@Development tools"
+    state: present
+    use: "{{ package_manager }}"
 - name: Install package dependencies
-  yum: 
+  package: 
     name: "{{ item }}"
     state: latest
+    use: "{{ package_manager }}"
   with_items:
     - git-core
     - zip

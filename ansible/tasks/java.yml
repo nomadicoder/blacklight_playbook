@@ -1,5 +1,6 @@
 ---
 - name: Install Java
-  yum:
+  package:
     name: java-{{ java_version }}-openjdk
     state: present
+    use: "{{ package_manager }}"
