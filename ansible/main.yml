@@ -12,6 +12,7 @@
     app_name: blsearch
     app_user: blsearch
     app_path: /var/www/{{ app_name }}
+    app_repo: https://github.com/skng5/blsearch
   tasks:
     - name: Install dumb init
       get_url: dest=/usr/bin/dumb-init url=https://github.com/Yelp/dumb-init/releases/download/v1.0.2/dumb-init_1.0.2_amd64 mode=0775 validate_certs=no
@@ -21,3 +22,4 @@
     - include: tasks/app_user.yml
     - include: tasks/ruby.yml
       remote_user : "{{ app_user }}"
+    - include: tasks/blacklight.yml

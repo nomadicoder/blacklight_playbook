@@ -20,5 +20,3 @@
     - include: tasks/nodejs.yml
     - include: tasks/ruby.yml
       become : "{{ app_user }}"
-#    - include: tasks/blacklight.yml
-#      become : "{{ app_user }}"
