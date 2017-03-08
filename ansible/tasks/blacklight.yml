@@ -6,6 +6,7 @@
     repo: "{{ app_repo }}"
     dest: "{{ app_path }}"
     force: yes
+    version: harvest_csv
 - name: Change directory attributes
   file:
     path: "{{ app_path }}"
@@ -25,6 +26,11 @@
     owner: "{{ app_user }}"
     group: "{{ app_user }}"
     mode: 0755
+- name: Install blimp migratinos
+  command: "/home/{{ app_user }}/.rbenv/shims/rake blimp:install:migrations"
+  args:
+    chdir: "{{ app_path }}"
+  remote_user: "{{ app_user }}"
 - name: Migrate database
   command: "/home/{{ app_user }}/.rbenv/shims/rake db:migrate"
   args:
@@ -37,10 +43,4 @@
   remote_user: "{{ app_user }}"
 - name: Install foreman
   command: "/home/{{ app_user }}/.rbenv/shims/gem install foreman --no-ri"
-  remote_user: "{{ app_user }}"
-- name: Copy Procfile
-  copy:
-    src: files/Procfile
-    dest: "{{ app_path }}"
-    mode: 0755
   remote_user: "{{ app_user }}"
