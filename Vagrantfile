@@ -8,7 +8,7 @@ VAGRANTFILE_API_VERSION = "2"
 APP_NAME = "blsearch"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "geerlingguy/centos7"
+  config.vm.box = "centos/7"
   config.vm.hostname = APP_NAME
   config.vm.network "forwarded_port", guest: 3000, host: 3000
   config.vm.network "forwarded_port", guest: 8983, host: 8983
